@@ -10,4 +10,8 @@ class Category extends Model
     use HasFactory;
 
     public $timestamps = false;
+
+    public function lots() {
+        return $this->hasMany('App\Models\Lot');
+    }
 }
