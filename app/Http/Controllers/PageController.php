@@ -22,4 +22,8 @@ class PageController extends Controller
 
         return view('single-lot', ['lot' => $lot]);
     }
+
+    public function signup() {
+        return view('sign-up');
+    }
 }
