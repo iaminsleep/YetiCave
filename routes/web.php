@@ -18,8 +18,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PageController::class, "index"])->name('main-page');
+
 Route::get('/lots/{id}', [PageController::class, "single"])->name('lot-page');
+
 Route::get('/lots/category/{id}', [LotController::class, "searchByCategory"])->name('category-search');
+
 Route::get('/search', [LotController::class, "search"])->name('search');
-Route::get('/sign-up', [PageController::class, "signup"])->name('signup-page');
+
+Route::get('/sign-up', [PageController::class, "signup"])->name('signup-page')->middleware('authCheck');;
 Route::post('/sign-up', [UserController::class, "signup"])->name('signup');
+
+Route::get('/login', [PageController::class, "login"])->name('login-page');
+Route::post('/login', [PageController::class, "login"])->name('login');
+
+Route::get('/logout', [PageController::class, "logout"])->name('logout')->middleware('authCheck');;
+
+Route::get('add-lot', [PageController::class, "add-lot"])->name('add-lot-page')->middleware('authCheck');
