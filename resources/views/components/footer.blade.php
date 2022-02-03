@@ -51,7 +51,7 @@
         <a class="main-footer__add-lot button" href="add-lot.html">Добавить лот</a>
         <div class="main-footer__developed-by">
             <span class="visually-hidden">Разработано:</span>
-            <a class="logo-academy" href="https://htmlacademy.ru/intensive/php">
+            <a class="logo-academy" href="https://htmlacademy.ru/intensive/php" target="_blank">
                 <span class="visually-hidden">HTML Academy</span>
                 <svg width="118" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 117.01 40">
                     <path fill="#879296"

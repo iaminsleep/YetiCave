@@ -6,6 +6,7 @@
         <title>@yield('title')</title>
         <link href="/css/normalize.min.css" rel="stylesheet">
         <link href="/css/style.css" rel="stylesheet">
+        <link href="../../public/img/yeti.png" rel="icon">
     @show
 </head>
 <body>
