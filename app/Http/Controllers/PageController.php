@@ -30,4 +30,8 @@ class PageController extends Controller
     public function login() {
         return view('login');
     }
+
+    public function addLot() {
+        return view('add-lot');
+    }
 }

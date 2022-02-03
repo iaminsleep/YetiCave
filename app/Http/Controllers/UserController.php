@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller {
@@ -43,14 +44,18 @@ class UserController extends Controller {
         ]);
 
         if($validator->fails()) {
-            return redirect(route('login-page'))->withErrors($validator)->withInput();
+            return redirect(route('login-page'))
+                ->withErrors($validator)
+                ->withInput();
         }
 
         if(Auth::attempt($userInfo)) {
             return redirect('/');
         }
 
-        return redirect(route('login-page'))->withErrors(['auth-error' => 'Email или пароль введены некорректно'])->withInput();
+        return redirect(route('login-page'))
+            ->withErrors(['auth-error' => 'Email или пароль введены некорректно'])
+            ->withInput();
     }
 
     public function logout() {
