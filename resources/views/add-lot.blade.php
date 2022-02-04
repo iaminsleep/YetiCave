@@ -13,8 +13,9 @@
 @endsection
 
 @section('page-content')
-    <form class="form form--add-lot container @if($errors->any()) {{ 'form--invalid' }} @endif" 
-        action="{{ route('add-lot') }}" 
+    <x-nav></x-nav>
+    <form class="form form--add-lot container @if($errors->any()) {{ 'form--invalid' }} @endif"
+        action="{{ route('add-lot') }}"
         method="post"
         enctype="multipart/form-data">
         @csrf
@@ -63,7 +64,7 @@
             </div>
             <div class="form__item @error('lot-date') {{ 'form__item--invalid' }} @enderror">
                 <label for="lot-date">Дата окончания торгов <sup>*</sup></label>
-                <input class="form__input-date" id="lot-date" type="text" 
+                <input class="form__input-date" id="lot-date" type="text"
                 name="lot-date" placeholder="Введите дату в формате ГГГГ-ММ-ДД" value="{{ old('lot-date') }}">
                 <span class="form__error">Введите дату завершения торгов</span>
             </div>

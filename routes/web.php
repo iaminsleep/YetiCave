@@ -22,5 +22,7 @@ Route::post('/login', [UserController::class, "login"])->name('login');
 
 Route::get('/logout', [UserController::class, "logout"])->name('logout')->middleware('authCheck');;
 
-Route::get('add-lot', [PageController::class, "addLot"])->name('add-lot-page')->middleware('authCheck');
-Route::post('add-lot', [LotController::class, "addLot"])->name('add-lot')->middleware('authCheck');
+Route::get('/add-lot', [PageController::class, "addLot"])->name('add-lot-page')->middleware('authCheck');
+Route::post('/add-lot', [LotController::class, "addLot"])->name('add-lot')->middleware('authCheck');
+
+Route::get('/profile', [PageController::class, "profile"])->name('profile-page')->middleware('authCheck');

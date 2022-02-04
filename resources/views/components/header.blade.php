@@ -8,21 +8,21 @@
             <input type="search" name="search" placeholder="Поиск лота">
             <input class="main-header__search-btn" type="submit" name="find" value="Найти">
         </form>
-        <a class="main-header__add-lot button" href="{{route('add-lot-page')}}">Добавить лот</a>
+        <a class="main-header__add-lot button" href="@if(Auth::user()){{ route('add-lot-page') }} @else {{ route('signup-page') }} @endif">Добавить лот</a>
         <nav class="user-menu">
             @if(Auth::user())
             <div class="user-menu__logged">
-                <p>{{Auth::user()->name}}</p>
-                <a class="user-menu__bets user-menu" href="#">Мои ставки</a>
-                <a class="user-menu__logout" href="{{ route('logout') }}">Выход</a>
+                <p>{{ Auth::user()->name }}</p>
+                <a class="user-menu__bets user-menu" href="{{ route('profile-page') }}">Мои ставки</a>
+                <a class="user-menu__logout" href="{{  route('logout') }}">Выход</a>
             </div>
             @else
                 <ul class="user-menu__list">
                     <li class="user-menu__item">
-                        <a href="{{route('signup-page')}}">Регистрация</a>
+                        <a href="{{ route('signup-page') }}">Регистрация</a>
                     </li>
                     <li class="user-menu__item">
-                        <a href="{{route('login-page')}}">Вход</a>
+                        <a href="{{ route('login-page') }}">Вход</a>
                     </li>
                 </ul>
             @endif
