@@ -14,4 +14,8 @@ class Lot extends Model
     public function category() {
         return $this->belongsTo('App\Models\Category');
     }
+
+    public function bets() {
+        return $this->hasMany('App\Models\Bet');
+    }
 }

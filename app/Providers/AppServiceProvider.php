@@ -27,9 +27,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $categories = Category::all();
+        if (!app()->runningInConsole()) {
+            $categories = Category::all();
 
-        View::share('categories', $categories);
-
+            View::share('categories', $categories);
+        }
     }
 }

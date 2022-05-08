@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateLotsTable extends Migration
 {
+    public function getCurrentDate() {
+        $time_now = new DateTime();
+        return $time_now->format('Y-m-d H:i:s');
+    }
+
     /**
      * Run the migrations.
      *
@@ -26,7 +31,7 @@ class CreateLotsTable extends Migration
             $table->foreignId('category_id')->constrained('categories');
             $table->foreignId('winner_id')->nullable()->constrained('users');
             $table->timestamp('creation_date')->default(New Expression('NOW()'));
-            $table->timestamp('end_date');
+            $table->timestamp('end_date')->default(date("Y-m-d H:i:s", strtotime($this->getCurrentDate().' + 1 week')));
         });
         DB::statement('ALTER TABLE lots ADD FULLTEXT fulltext_index (title,description)');
     }

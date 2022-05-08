@@ -9,13 +9,13 @@
         <table class="rates__list">
             @forelse($bets as $bet)
                 <tr class="rates__item @if($bet->lot->winner_id === $id) {{ $status['winner'] }}
-                                        @elseif(Carbon\Carbon::now()->gte($bet->lot->end_date)) {{ $status['end'] }} @endif">
+                    @elseif(Carbon\Carbon::now()->gte($bet->lot->end_date)) {{ $status['end'] }} @endif">
                     <td class="rates__info">
                         <div class="rates__img">
                             <img src="{{ $bet->lot->url }}" width="54" height="40" alt="Сноуборд">
                         </div>
                         <h3 class="rates__title">
-                            <a href="{{ route('lot-page', ['id' => $bet->lot->id]) }}">{{$bet->lot->title}}</a>
+                            <a href="{{ route('lot-page', ['id' => $bet->lot->id]) }}">{{ $bet->lot->title }}</a>
                         </h3>
                         @if($bet->lot->winner_id === $id)
                             <p>{{ $bet->author->contacts }}</p>

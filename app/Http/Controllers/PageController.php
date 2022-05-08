@@ -20,9 +20,16 @@ class PageController extends Controller
 
     public function single($id) {
 
+        Carbon::setLocale('ru');
+
         $lot = Lot::findOrFail($id);
 
-        return view('single-lot', ['lot' => $lot]);
+        $current_date = Carbon::parse(date('Y-m-d H:i:s'));
+        $end_date = Carbon::parse($lot->end_date);
+
+        $timer = $end_date->diff($current_date)->format('%d:%H:%i:%s');
+
+        return view('single-lot', ['lot' => $lot, 'timer' => $timer]);
     }
 
     public function signup() {

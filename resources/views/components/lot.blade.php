@@ -11,7 +11,7 @@
                 <span class="lot__cost">{{ $lot->price}}<b class="rub">р</b></span>
             </div>
             <div class="lot__timer timer">
-                16:54:12
+                {{ $timer = Carbon\Carbon::parse($lot->end_date)->diff(Carbon\Carbon::parse(date('Y-m-d H:i:s')))->format('%d:%H:%i:%s') }}
             </div>
         </div>
     </div>

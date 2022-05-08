@@ -10,7 +10,7 @@
         <div class="lot-item__content">
             <div class="lot-item__left">
                 <div class="lot-item__image">
-                    <img src="/{{$lot->url}}" width="730" height="548" alt="Сноуборд">
+                    <img src="/{{$lot->url}}" width="730" height="548" alt="{{ $lot->title }}">
                 </div>
                 <p class="lot-item__category">Категория: <span>{{$lot->category->title}}</span></p>
                 <p class="lot-item__description">{{$lot->description}}</p>
@@ -18,15 +18,15 @@
             <div class="lot-item__right">
                 <div class="lot-item__state">
                     <div class="lot-item__timer timer">
-                        10:54
+                        {{ $timer }}
                     </div>
                     <div class="lot-item__cost-state">
                         <div class="lot-item__rate">
                             <span class="lot-item__amount">Текущая цена</span>
-                            <span class="lot-item__cost">{{$lot->price}}</span>
+                            <span class="lot-item__cost">{{$lot->price}}<b class="rub">р</b></span>
                         </div>
                         <div class="lot-item__min-cost">
-                            Мин. ставка <span>{{$lot->price + $lot->bet_step}}</span>
+                            Мин. ставка <span>{{$lot->price + $lot->bet_step}}<b class="rub">р</b></span>
                         </div>
                     </div>
                     <form class="lot-item__form" action="https://echo.htmlacademy.ru" method="post" autocomplete="off">
@@ -39,58 +39,11 @@
                     </form>
                 </div>
                 <div class="history">
-                    <h3>История ставок (<span>10</span>)</h3>
+                    <h3>История ставок (<span>{{ $lot->bets->count() }}</span>)</h3>
                     <table class="history__list">
-                        <tr class="history__item">
-                            <td class="history__name">Иван</td>
-                            <td class="history__price">10 999 р</td>
-                            <td class="history__time">5 минут назад</td>
-                        </tr>
-                        <tr class="history__item">
-                            <td class="history__name">Константин</td>
-                            <td class="history__price">10 999 р</td>
-                            <td class="history__time">20 минут назад</td>
-                        </tr>
-                        <tr class="history__item">
-                            <td class="history__name">Евгений</td>
-                            <td class="history__price">10 999 р</td>
-                            <td class="history__time">Час назад</td>
-                        </tr>
-                        <tr class="history__item">
-                            <td class="history__name">Игорь</td>
-                            <td class="history__price">10 999 р</td>
-                            <td class="history__time">19.03.17 в 08:21</td>
-                        </tr>
-                        <tr class="history__item">
-                            <td class="history__name">Енакентий</td>
-                            <td class="history__price">10 999 р</td>
-                            <td class="history__time">19.03.17 в 13:20</td>
-                        </tr>
-                        <tr class="history__item">
-                            <td class="history__name">Семён</td>
-                            <td class="history__price">10 999 р</td>
-                            <td class="history__time">19.03.17 в 12:20</td>
-                        </tr>
-                        <tr class="history__item">
-                            <td class="history__name">Илья</td>
-                            <td class="history__price">10 999 р</td>
-                            <td class="history__time">19.03.17 в 10:20</td>
-                        </tr>
-                        <tr class="history__item">
-                            <td class="history__name">Енакентий</td>
-                            <td class="history__price">10 999 р</td>
-                            <td class="history__time">19.03.17 в 13:20</td>
-                        </tr>
-                        <tr class="history__item">
-                            <td class="history__name">Семён</td>
-                            <td class="history__price">10 999 р</td>
-                            <td class="history__time">19.03.17 в 12:20</td>
-                        </tr>
-                        <tr class="history__item">
-                            <td class="history__name">Илья</td>
-                            <td class="history__price">10 999 р</td>
-                            <td class="history__time">19.03.17 в 10:20</td>
-                        </tr>
+                        @foreach($lot->bets as $bet)
+                            <x-bet :bet="$bet"></x-bet>
+                        @endforeach
                     </table>
                 </div>
             </div>

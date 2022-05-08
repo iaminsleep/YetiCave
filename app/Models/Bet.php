@@ -10,4 +10,12 @@ class Bet extends Model
     use HasFactory;
 
     public $timestamps = false;
+
+    public function lot() {
+        return $this->belongsTo('App\Models\Lot');
+    }
+
+    public function author() {
+        return $this->belongsTo('App\Models\User');
+    }
 }
