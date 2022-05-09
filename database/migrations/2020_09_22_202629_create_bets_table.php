@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Query\Expression;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+
+use Carbon\Carbon;
 
 class CreateBetsTable extends Migration
 {
@@ -16,7 +17,7 @@ class CreateBetsTable extends Migration
     {
         Schema::create('bets', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('bet_date')->default(New Expression('NOW()'));
+            $table->timestamp('bet_date');
             $table->integer('bet_price');
             $table->foreignId('author_id')->constrained('users');
             $table->foreignId('lot_id')->constrained('lots');

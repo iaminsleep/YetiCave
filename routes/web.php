@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LotController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\BetController;
 
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PageController::class, "index"])->name('main-page');
 
 Route::get('/lots/{id}', [PageController::class, "single"])->name('lot-page');
+Route::post('/lots/{lotId}', [BetController::class, "placeBet"])->name('lot-place-bet')->middleware('authCheck');
 
 Route::get('/lots/category/{id}', [LotController::class, "searchByCategory"])->name('category-search');
 

@@ -1,10 +1,11 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Query\Expression;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+
+use Carbon\Carbon;
 
 class CreateLotsTable extends Migration
 {
@@ -30,10 +31,10 @@ class CreateLotsTable extends Migration
             $table->foreignId('author_id')->constrained('users');
             $table->foreignId('category_id')->constrained('categories');
             $table->foreignId('winner_id')->nullable()->constrained('users');
-            $table->timestamp('creation_date')->default(New Expression('NOW()'));
-            $table->timestamp('end_date')->default(date("Y-m-d H:i:s", strtotime($this->getCurrentDate().' + 1 week')));
+            $table->timestamp('creation_date');
+            $table->timestamp('end_date');
         });
-        DB::statement('ALTER TABLE lots ADD FULLTEXT fulltext_index (title,description)');
+        DB::statement('ALTER TABLE lots ADD FULLTEXT fulltext_index (title, description)');
     }
 
     /**

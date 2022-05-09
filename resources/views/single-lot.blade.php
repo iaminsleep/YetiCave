@@ -26,17 +26,22 @@
                             <span class="lot-item__cost">{{$lot->price}}<b class="rub">р</b></span>
                         </div>
                         <div class="lot-item__min-cost">
-                            Мин. ставка <span>{{$lot->price + $lot->bet_step}}<b class="rub">р</b></span>
+                            Мин. ставка <span>{{$lot->price + $lot->bet_step}} руб.</span>
                         </div>
                     </div>
-                    <form class="lot-item__form" action="https://echo.htmlacademy.ru" method="post" autocomplete="off">
-                        <p class="lot-item__form-item form__item form__item--invalid">
-                            <label for="cost">Ваша ставка</label>
-                            <input id="cost" type="text" name="cost" placeholder="{{$lot->price + $lot->bet_step}}">
-                            <span class="form__error">Введите наименование лота</span>
-                        </p>
-                        <button type="submit" class="button">Сделать ставку</button>
-                    </form>
+                    @if(Auth::user() && $lot->author_id !== Auth::user()->id)
+                        <form class="lot-item__form" action="@if(Auth::user()) {{ route('lot-place-bet', $lot->id) }} @endif" method="post" autocomplete="off">
+                            {{ csrf_field() }}
+                            <p class="lot-item__form-item form__item @if($errors->any()) {{ 'form__item--invalid' }} @endif">
+                                <label for="cost">Ваша ставка</label>
+                                <input id="cost" name="bet_price" placeholder="{{$lot->price + $lot->bet_step}} руб."value="{{ old('bet_price') }}">
+                                @error('bet_price') 
+                                    <span class="form__error">Введите корректную сумму</span> 
+                                @enderror
+                            </p>
+                            <button type="submit" class="button">Сделать ставку</button>
+                        </form>
+                    @endif
                 </div>
                 <div class="history">
                     <h3>История ставок (<span>{{ $lot->bets->count() }}</span>)</h3>

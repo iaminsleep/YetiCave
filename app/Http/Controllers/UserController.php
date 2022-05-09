@@ -29,10 +29,11 @@ class UserController extends Controller {
         $user->email = $userData['email'];
         $user->password = bcrypt($userData['password']);
         $user->contacts = $userData['message'];
+        $user->signup_date = Carbon::now()->timezone('Europe/Moscow');
 
         $user->save();
 
-        return redirect(route('main-page'));
+        return redirect()->intended('/');
     }
 
     public function login(Request $request) {
@@ -50,7 +51,7 @@ class UserController extends Controller {
         }
 
         if(Auth::attempt($userInfo)) {
-            return redirect('/');
+            return redirect()->intended('/');
         }
 
         return redirect(route('login-page'))

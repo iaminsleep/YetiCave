@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+use Carbon\Carbon;
+
 class UserSeeder extends Seeder
 {
     /**
@@ -19,25 +21,29 @@ class UserSeeder extends Seeder
                 'name' => 'Алекс',
                 'email' => 'alex@email.com',
                 'password' => bcrypt('password@'),
-                'contacts' => '89997773355'
+                'contacts' => '89997773355',
+                'signup_date' => Carbon::now()->timezone('Europe/Moscow'),
             ],
             [
                 'name' => 'Елена',
                 'email' => 'elena@email.com',
                 'password' => bcrypt('password@'),
-                'contacts' => '89995558844'
+                'contacts' => '89995558844',
+                'signup_date' => Carbon::now()->timezone('Europe/Moscow'),
             ],
             [
                 'name' => 'Артём',
                 'email' => 'artem@email.com',
                 'password' => bcrypt('password@'),
-                'contacts' => '79992223311'
+                'contacts' => '79992223311',
+                'signup_date' => Carbon::now()->timezone('Europe/Moscow'),
             ],
             [
                 'name' => 'Саша',
                 'email' => 'sasha@email.com',
                 'password' => bcrypt('password@'),
-                'contacts' => '79994446600'
+                'contacts' => '79994446600',
+                'signup_date' => Carbon::now()->timezone('Europe/Moscow'),
             ],
         ];
         DB::table('users')->insert($users);

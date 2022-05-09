@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Lot;
+use App\Models\Bet;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -51,6 +52,7 @@ class LotController extends Controller {
         $lot->description = request('message');
         $lot->price = request('lot-rate');
         $lot->bet_step = request('lot-step');
+        $lot->creation_date = Carbon::now()->timezone('Europe/Moscow');
         $lot->end_date = request('lot-date');
         $lot->url = request()->file('lot-img')->store('img/lots');
 
