@@ -36,4 +36,9 @@ class BetController extends Controller
 
         return redirect(route('lot-page', ['id' => $lot->id]));
     }
+
+    public function deleteBet($betId) {
+        Bet::where('id', $betId)->where('author_id', Auth::user()->id)->delete();
+        return redirect()->back();
+    }
 }

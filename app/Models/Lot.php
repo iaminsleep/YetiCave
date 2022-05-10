@@ -18,4 +18,8 @@ class Lot extends Model
     public function bets() {
         return $this->hasMany('App\Models\Bet');
     }
+
+    public function author() {
+        return $this->belongsTo('App\Models\User');
+    }
 }

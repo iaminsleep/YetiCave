@@ -13,7 +13,7 @@
             <label for="email">E-mail <sup>*</sup></label>
             <input id="email" type="text" name="email" placeholder="Введите e-mail" value="{{ old('email') }}">
             @error('email')
-                <span class="form__error">Введите e-mail</span>
+                <span class="form__error">Введите корректный e-mail</span>
             @enderror
         </div>
         <div class="form__item form__item--last @error('password') form__item--invalid @enderror">

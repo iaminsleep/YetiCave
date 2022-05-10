@@ -43,4 +43,8 @@ class User extends Authenticatable
     public function bets() {
         return $this->hasMany('App\Models\Bet', 'author_id');
     }
+
+    public function lots() {
+        return $this->hasMany('App\Models\Lot');
+    }
 }

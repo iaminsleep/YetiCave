@@ -867,7 +867,7 @@ input:invalid .form__error{
 .form__item--invalid textarea,
 .form__item--invalid input {
   background: #ffffff url("../img/error.svg") 97% 11px no-repeat;
-  border-color: #f84646;
+  border-color: #f84646 !important;
 }
 
 .form__item--invalid select {
@@ -1012,9 +1012,26 @@ input:invalid .form__error{
 }
 
 .lot-item__min-cost {
-  -webkit-align-self: flex-end;
-  -ms-flex-item-align: end;
-  align-self: flex-end;
+  align-self: center !important;
+}
+
+.lot-item__author {
+  font-size: 13px;
+  margin: 0;
+  background: #b4ceff;
+  padding: 0 10px;
+}
+
+.author_below {
+  margin-bottom: 13px;
+}
+
+.cost-red {
+  color: #df3b3b;
+}
+
+.cost-green {
+  color: #41a841;
 }
 
 .lot-item__form {
@@ -1025,6 +1042,7 @@ input:invalid .form__error{
   -ms-flex-pack: justify;
   justify-content: space-between;
   margin-top: 17px;
+  margin-bottom: 10px;
 }
 
 .lot-item__form-item {
@@ -1056,6 +1074,8 @@ input:invalid .form__error{
   -ms-flex-item-align: end;
   align-self: flex-end;
   padding: 6px 20px 7px;
+  width: 300px;
+  cursor: pointer;
 }
 
 /* История ставок */
@@ -1075,11 +1095,9 @@ input:invalid .form__error{
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
   padding: 6px 20px;
   min-width: 310px;
+  max-width: 310px;
   background-color: #ffffff;
   border-bottom: 1px solid #dbe6e9;
   font-size: 13px;
@@ -1088,7 +1106,6 @@ input:invalid .form__error{
 
 .history__item td {
   display: block;
-  width: 33%;
   max-width: 110px;
   word-wrap: break-word;
 }
@@ -1099,6 +1116,30 @@ input:invalid .form__error{
 
 .history__name {
   font-weight: 700;
+  width: 60px;
+}
+
+.history__price {
+  width: 90px;
+}
+
+.history__time {
+  width: 110px;
+}
+
+.history__delete {
+  background: url('../img/remove.png') no-repeat;
+  background-size: 15px;
+  padding: 11px;
+  border: none;
+  cursor: pointer;
+}
+
+.no-width {
+  width: auto !important;
+  width: 40px !important;
+  display: flex !important;
+  justify-content: end;
 }
 
 /* Мои ставки */
