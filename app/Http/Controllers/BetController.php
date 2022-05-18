@@ -18,7 +18,7 @@ class BetController extends Controller
         $lot = Lot::findOrFail($lotId);
 
         $validator = Validator::make($betData, [
-            'bet_price' => 'required|numeric|not_in:0|gt:'.$lot->price,
+            'bet_price' => 'required|numeric|not_in:0|gt:'.Bet::where('lot_id', $lot->id)->orderBy('bet_price', 'desc')->first()->bet_price ?? $lot->price,
         ]);
 
         if($validator->fails()) {

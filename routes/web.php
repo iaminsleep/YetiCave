@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PageController::class, "index"])->name('main-page');
 
 Route::get('/lots/{id}', [PageController::class, "single"])->name('lot-page');
-Route::post('/lots/{lotId}', [BetController::class, "placeBet"])->name('lot-place-bet')->middleware('authCheck');
+Route::post('/lots/{lotId}/create-bet', [BetController::class, "placeBet"])->name('lot-place-bet')->middleware('authCheck');
+Route::post('/lots/{lotId}', [LotController::class, "endLot"])->name('lot-end')->middleware('authCheck');
 Route::delete('/bets/{betId}', [BetController::class, "deleteBet"])->name('delete-bet')->middleware('authCheck');
 
 Route::get('/lots/category/{id}', [LotController::class, "searchByCategory"])->name('category-search');

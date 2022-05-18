@@ -9,6 +9,7 @@ use App\Models\Bet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class LotController extends Controller {
     public function searchByCategory($id) {
@@ -58,6 +59,14 @@ class LotController extends Controller {
 
         $lot->save();
 
+        return redirect(route('lot-page', ['id' => $lot->id]));
+    }
+
+    public function endLot(Request $request, $lotId) {
+        $lot = Lot::findOrFail($lotId);
+        $lot->winner_id = Bet::where('lot_id', $lot->id)->orderBy('bet_price', 'desc')->first()->author_id;
+        $lot->end_date = Carbon::now()->timezone('Europe/Moscow');
+        $lot->save();
         return redirect(route('lot-page', ['id' => $lot->id]));
     }
 }

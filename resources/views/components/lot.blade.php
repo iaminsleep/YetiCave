@@ -1,6 +1,6 @@
-<li class="lots__item lot">
+<li class="lots__item lot @if(Carbon\Carbon::now()->gte($lot->end_date)) {{ 'item--end' }} @endif">
     <div class="lot__image">
-        <img src="/{{ $lot->url }}" width="350" height="260" alt="Сноуборд">
+        <img src="/{{ $lot->url }}" width="350" height="350" alt="Сноуборд">
     </div>
     <div class="lot__info">
         <span class="lot__category">{{ $lot->category->title }}</span>
@@ -11,7 +11,9 @@
                 <span class="lot__cost">{{ $lot->price}}<b class="rub">р</b></span>
             </div>
             <div class="lot__timer timer">
-                {{ Carbon\Carbon::parse($lot->end_date)->diff(Carbon\Carbon::parse(date('Y-m-d H:i:s')))->format('%d:%H:%i:%s') }}
+                @if(Carbon\Carbon::now()->gte($lot->end_date)) {{ 'Завершён' }} 
+                @else {{ Carbon\Carbon::parse($lot->end_date)->diff(Carbon\Carbon::parse(date('Y-m-d H:i:s')))->format('%d:%H:%i:%s') }}
+                @endif
             </div>
         </div>
     </div>

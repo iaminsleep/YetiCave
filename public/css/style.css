@@ -597,7 +597,7 @@ main.container {
 
 .lot__image {
   width: 350px;
-  height: 261px;
+  height: 350px;
   border-bottom: 1px solid #e1e6e7;
 }
 
@@ -944,8 +944,8 @@ input:invalid .form__error{
 
 .lot-item__image {
   position: relative;
-  width: 730px;
-  height: 550px;
+  width: 650px;
+  height: 650px;
   text-align: center;
   background-color: #ffffff;
   overflow: hidden;
@@ -1018,8 +1018,6 @@ input:invalid .form__error{
 .lot-item__author {
   font-size: 13px;
   margin: 0;
-  background: #b4ceff;
-  padding: 0 10px;
 }
 
 .author_below {
@@ -1125,6 +1123,10 @@ input:invalid .form__error{
 
 .history__time {
   width: 110px;
+}
+
+.auth__author {
+  color: #0058ff;
 }
 
 .history__delete {
@@ -1252,6 +1254,10 @@ input:invalid .form__error{
   box-sizing: border-box;
 }
 
+.winner {
+  color: green;
+}
+
 .rates__price {
   width: 135px;
   font-size: 13px;
@@ -1275,5 +1281,9 @@ input:invalid .form__error{
 }
 
 .rates__item--end {
-  opacity: 0.4;
+  opacity: 0.5;
+}
+
+.item--end {
+  opacity: 0.7;
 }

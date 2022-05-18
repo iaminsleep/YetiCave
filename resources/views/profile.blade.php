@@ -8,7 +8,7 @@
         <h2>Мои ставки</h2>
         <table class="rates__list">
             @forelse($bets->sortByDesc('bet_date') as $bet)
-                <tr class="rates__item @if($bet->lot->winner_id === $id) {{ $status['winner'] }}
+                <tr class="rates__item @if($bet->lot->winner_id === $id && $bets->where('lot_id', $bet->lot->id)->sortByDesc('bet_price')->first()->bet_price === $bet->bet_price) {{ $status['winner'] }}
                     @elseif(Carbon\Carbon::now()->gte($bet->lot->end_date)) {{ $status['end'] }} @endif">
                     <td class="rates__info">
                         <div class="rates__img">
@@ -17,19 +17,19 @@
                         <h3 class="rates__title">
                             <a href="{{ route('lot-page', ['id' => $bet->lot->id]) }}">{{ $bet->lot->title }}</a>
                         </h3>
-                        @if($bet->lot->winner_id === $id)
-                            <p>{{ $bet->author->contacts }}</p>
-                        @endif
                     </td>
                     <td class="rates__category">
                         {{ $bet->lot->category->title }}
                     </td>
                     <td class="rates__timer">
-                        @if($bet->lot->winner_id === $id)
+                        @if($bet->lot->winner_id === $id && $bets->where('lot_id', $bet->lot->id)->sortByDesc('bet_price')->first()->bet_price === $bet->bet_price)
                             <div class="timer timer--win">Ставка выиграла</div>
                         @else
-                            <div class="timer @if(Carbon\Carbon::parse($bet->lot->end_date)->diff(Carbon\Carbon::parse(date('Y-m-d H:i:s')))->format    ('%d:%H:%i:%s') < ('1:0:0:0')) {{ 'timer--finishing' }} @endif">
-                                {{ Carbon\Carbon::parse($bet->lot->end_date)->diff(Carbon\Carbon::parse(date('Y-m-d H:i:s')))->format('%d:%H:%i:%s') }}
+                            <div class="timer @if(Carbon\Carbon::parse($bet->lot->end_date)->diff(Carbon\Carbon::parse(date('Y-m-d H:i:s')))->format    ('%d:%H:%i:%s') < ('1:00:00:00') && !Carbon\Carbon::now()->gte($bet->lot->end_date)) {{ 'timer--finishing' }} @endif">
+                                @if(Carbon\Carbon::now()->gte($bet->lot->end_date)) {{ 'Завершён' }} 
+                                @else {{ Carbon\Carbon::parse($bet->lot->end_date)
+                                ->diff(Carbon\Carbon::parse(date('Y-m-d H:i:s')))->format('%d:%H:%i:%s') }}
+                                @endif
                             </div>
                         @endif
                     </td>
