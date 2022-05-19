@@ -24,16 +24,14 @@
                     </div>
                     <div class="lot-item__cost-state">
                         <div class="lot-item__rate">
-                            <span class="lot-item__amount @if(!Carbon\Carbon::now()->gte($lot->end_date)) {{ 'cost-red' }} @endif">Начальная цена:</span>
-                            <span class="lot-item__cost @if(!Carbon\Carbon::now()->gte($lot->end_date)) {{ 'cost-red' }} @endif">{{ $lot->price }}<b class="rub">р</b></span>
-                            @if(App\Models\Bet::where('lot_id', $lot->id)->count() > 0)
+                            <span class="lot-item__amount @if(!Carbon\Carbon::now()->gte($lot->end_date) && $lot->bets->count() > 0) {{ 'cost-red' }} @endif">Начальная цена:</span>
+                            <span class="lot-item__cost @if(!$lot->bets->count() > 0) {{ 'author_below' }} @elseif(!Carbon\Carbon::now()->gte($lot->end_date) && $lot->bets->count() > 0) {{ 'cost-red' }} @endif">{{ $lot->price }}<b class="rub">р</b></span>
+                            @if($lot->bets->count() > 0)
                                 <span class="lot-item__amount @if(!Carbon\Carbon::now()->gte($lot->end_date)) {{ 'cost-green' }} @endif">
                                     @if(Carbon\Carbon::now()->gte($lot->end_date)) {{ 'Продано за:' }}
                                     @else {{ 'Текущая цена:' }} @endif
                                 </span>
-                                <span class="lot-item__cost author_below @if(!Carbon\Carbon::now()->gte($lot->end_date)) {{ 'cost-green' }} @endif">
-                                    {{ App\Models\Bet::where('lot_id', $lot->id)->orderBy('bet_price', 'desc')->first()->bet_price }}
-                                    <b class="rub">р</b>
+                                <span class="lot-item__cost author_below @if(!Carbon\Carbon::now()->gte($lot->end_date)) {{ 'cost-green' }} @endif">{{ App\Models\Bet::where('lot_id', $lot->id)->orderBy('bet_price', 'desc')->first()->bet_price }}<b class="rub">р</b>
                                 </span>
                             @endif
                             @if(!Carbon\Carbon::now()->gte($lot->end_date))
@@ -45,7 +43,7 @@
                     @if(Carbon\Carbon::now()->gte($lot->end_date)) 
                         <p>Аукцион завершён.</p>
                         @if($lot->winner_id)
-                            @if($lot->winner_id === Auth::user()->id)
+                            @if(Auth::user() && $lot->winner_id === Auth::user()->id)
                                 <p class="winner">Вы победили! Ожидайте звонка от автора аукциона.</p>
                             @else
                                 <p>Победитель: {{ App\Models\User::where('id', $lot->winner_id)->first()->name }}</p>
@@ -66,7 +64,7 @@
                         <div class="lot-item__min-cost">
                             (Мин. ставка: <b>{{ App\Models\Bet::where('lot_id', $lot->id)->orderBy('bet_price', 'desc')->first()->bet_price + $lot->bet_step }} руб.</b>)
                         </div>
-                    @else
+                    @elseif(Auth::user() && $lot->author_id === Auth::user()->id)
                         <form class="lot-item__form" action="@if(Auth::user() && $lot->author_id === Auth::user()->id) {{ route('lot-end', $lot->id) }} @endif" method="post">
                             {{ csrf_field() }}
                             <button type="submit" class="button">Завершить аукцион</button>
@@ -74,7 +72,11 @@
                     @endif
                 </div>
                 <div class="history">
-                    <h3>История ставок (<span>{{ $lot->bets->count() }}</span>)</h3>
+                    @if($lot->bets->count() > 0)
+                        <h3>История ставок (<span>{{ $lot->bets->count() }}</span>)</h3>
+                    @else
+                        <p>На данный момент ставок нет.</p>
+                    @endif
                     <table class="history__list">
                         @foreach($lot->bets->sortByDesc('bet_date') as $bet)
                             <x-bet :bet="$bet"></x-bet>

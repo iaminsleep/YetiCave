@@ -14,7 +14,7 @@ use Carbon\Carbon;
 class LotController extends Controller {
     public function searchByCategory($id) {
         $category = Category::findOrFail($id);
-        $lots = $category->lots;
+        $lots = Lot::where('category_id', $category->id)->paginate(6);
         return view('search', ['category' => $category->title, 'lots' => $lots]);
     }
 

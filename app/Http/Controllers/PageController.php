@@ -13,7 +13,7 @@ class PageController extends Controller
 {
     public function index() {
 
-        $lots = Lot::orderBy("id", "desc")->take(6)->get();
+        $lots = Lot::orderBy("id", "desc")->take(9)->get();
 
         return view('index', ['lots' => $lots]);
     }
