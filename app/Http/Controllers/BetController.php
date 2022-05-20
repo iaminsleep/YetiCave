@@ -17,8 +17,10 @@ class BetController extends Controller
         $betData = $request->except('_token');
         $lot = Lot::findOrFail($lotId);
 
+        $max_bet_price = Bet::where('lot_id', $lot->id)->orderBy('bet_price', 'desc')->first()->bet_price ?? $lot->price;
+
         $validator = Validator::make($betData, [
-            'bet_price' => 'required|numeric|not_in:0|gt:'.Bet::where('lot_id', $lot->id)->orderBy('bet_price', 'desc')->first()->bet_price ?? $lot->price,
+            'bet_price' => 'required|numeric|not_in:0|gt:'.$max_bet_price + $lot->bet_step - 1,
         ]);
 
         if($validator->fails()) {

@@ -66,7 +66,7 @@
                 <label for="lot-date">Дата окончания торгов <sup>*</sup></label>
                 <input class="form__input-date" id="lot-date" type="text"
                 name="lot-date" placeholder="Введите дату в формате ГГГГ-ММ-ДД" value="{{ old('lot-date') }}">
-                <span class="form__error">Введите дату завершения торгов</span>
+                <span class="form__error">Введите корректную дату завершения торгов (Внимание! Аукцион не может длиться дольше 7 дней.)</span>
             </div>
         </div>
         <span class="form__error form__error--bottom">Пожалуйста, исправьте ошибки в форме.</span>

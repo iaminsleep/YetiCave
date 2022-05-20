@@ -3,14 +3,14 @@
         <ul class="nav__list container">
             @foreach($categories as $category)
                 <li class="nav__item">
-                    <a href="{{route('category-search', ['id' => $category->id])}}">{{ $category->title }}</a>
+                    <a href="{{ route('category-search', ['id' => $category->id]) }}">{{ $category->title }}</a>
                 </li>
             @endforeach
         </ul>
     </nav>
     <div class="main-footer__bottom container">
         <div class="main-footer__copyright">
-            <p>© 2019, YetiCave</p>
+            <p>© 2022, YetiCave</p>
             <p>Интернет-аукцион сноубордического и горнолыжного снаряжения</p>
         </div>
         <div class="main-footer__social social">

@@ -1,6 +1,6 @@
 <li class="lots__item lot @if(Carbon\Carbon::now()->gte($lot->end_date)) {{ 'item--end' }} @endif">
     <div class="lot__image">
-        <img src="/{{ $lot->url }}" width="350" height="350" alt="Сноуборд">
+        <img src="/{{ $lot->url }}" alt="Сноуборд">
     </div>
     <div class="lot__info">
         <span class="lot__category">{{ $lot->category->title }}</span>

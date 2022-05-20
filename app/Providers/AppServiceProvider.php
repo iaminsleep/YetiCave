@@ -31,8 +31,8 @@ class AppServiceProvider extends ServiceProvider
     {
         if (!app()->runningInConsole()) {
             Paginator::useBootstrap();
-            $categories = Category::all();
 
+            $categories = Category::all();
             View::share('categories', $categories);
         }
     }

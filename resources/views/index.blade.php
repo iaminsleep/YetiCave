@@ -18,7 +18,7 @@
 
     <section class="lots">
         <div class="lots__header">
-            <h2>Открытые лоты</h2>
+            <h2>Популярные лоты</h2>
         </div>
         <ul class="lots__list">
             @foreach($lots as $lot)

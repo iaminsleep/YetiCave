@@ -167,6 +167,81 @@ class BetSeeder extends Seeder
                 'author_id' => 4,
                 'lot_id' => 6,
             ],
+            //7th lot
+            [
+                'bet_date' => Carbon::now()->timezone('Europe/Moscow'),
+                'bet_price' => 82500,
+                'author_id' => 1,
+                'lot_id' => 7,
+            ],
+            [
+                'bet_date' => Carbon::now()->timezone('Europe/Moscow'),
+                'bet_price' => 83500,
+                'author_id' => 2,
+                'lot_id' => 7,
+            ],
+            [
+                'bet_date' => Carbon::now()->timezone('Europe/Moscow'),
+                'bet_price' => 87000,
+                'author_id' => 4,
+                'lot_id' => 7,
+            ],
+            [
+                'bet_date' => Carbon::now()->timezone('Europe/Moscow'),
+                'bet_price' => 89000,
+                'author_id' => 2,
+                'lot_id' => 7,
+            ],
+            //8th lot
+            [
+                'bet_date' => Carbon::now()->timezone('Europe/Moscow'),
+                'bet_price' => 68600,
+                'author_id' => 1,
+                'lot_id' => 8,
+            ],
+            [
+                'bet_date' => Carbon::now()->timezone('Europe/Moscow'),
+                'bet_price' => 67800,
+                'author_id' => 3,
+                'lot_id' => 8,
+            ],
+            [
+                'bet_date' => Carbon::now()->timezone('Europe/Moscow'),
+                'bet_price' => 68400,
+                'author_id' => 2,
+                'lot_id' => 8,
+            ],
+            [
+                'bet_date' => Carbon::now()->timezone('Europe/Moscow'),
+                'bet_price' => 68800,
+                'author_id' => 1,
+                'lot_id' => 8,
+            ],
+            //9th lot
+            [
+                'bet_date' => Carbon::now()->timezone('Europe/Moscow'),
+                'bet_price' => 15200,
+                'author_id' => 2,
+                'lot_id' => 9,
+            ],
+            [
+                'bet_date' => Carbon::now()->timezone('Europe/Moscow'),
+                'bet_price' => 15399,
+                'author_id' => 3,
+                'lot_id' => 9,
+            ],
+            [
+                'bet_date' => Carbon::now()->timezone('Europe/Moscow'),
+                'bet_price' => 15900,
+                'author_id' => 2,
+                'lot_id' => 9,
+            ],
+            [
+                'bet_date' => Carbon::now()->timezone('Europe/Moscow'),
+                'bet_price' => 16500,
+                'author_id' => 4,
+                'lot_id' => 9,
+            ],
         ];
 
         DB::table('bets')->insert($bets);
