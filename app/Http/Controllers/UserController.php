@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
+use Carbon\Carbon;
+
 class UserController extends Controller {
     public function signup(Request $request) {
         $userData = $request->all();

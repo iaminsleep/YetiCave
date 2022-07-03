@@ -24,7 +24,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->call(function () {
+            Artisan::call('migrate:fresh');
+            Artisan::call('db:seed');
+        })->weekly();
     }
 
     /**
