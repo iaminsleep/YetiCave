@@ -20,7 +20,7 @@ class BetController extends Controller
         $max_bet_price = Bet::where('lot_id', $lot->id)->orderBy('bet_price', 'desc')->first()->bet_price ?? $lot->price;
 
         $validator = Validator::make($betData, [
-            'bet_price' => 'required|gt:'.(int)$max_bet_price + (int)$lot->bet_step - 1,
+            'bet_price' => 'required|gt:'.(((int)$max_bet_price + (int)$lot->bet_step) - 1),
         ]);
 
         if($validator->fails()) {
