@@ -24,6 +24,11 @@ The user creates a lot and sets the minimum price for the product and the end da
 - css
 - js
 
+## How to launch the project
+1. Download OpenServer
+2. Download project and extract the zip archive inside OpenServer's 'domains' folder
+3. Launch OpenServer and the project
+
 ## Hosting
 
 The service is hosted by Heroku<br>
