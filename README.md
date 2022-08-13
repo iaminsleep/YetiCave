@@ -1,22 +1,22 @@
-# Онлайн-аукцион горнолыжного снаряжения «YetiCave»
+# Online auction of ski equipment "YetiCave"
 
-Проект от HTML Academy (вёрстка), функционал которого был реализован с помощью php-фреймворка Laravel
+A project from the HTML Academy (layout), the functionality of which was implemented using the Laravel php framework
 
-## Кратко о функционале
+## Briefly about the functionality
 
-Пользователь создаёт лот и устанавливает минимальную цену за товар и дату завершения лота, а также шаг ставки. Пользователи, заинтересованные в покупке делают ставки, пытаясь побить ставки предыдущих пользователей. Сделать ставку, которая будет меньше максимальной ставки, нельзя. Побеждает тот пользователь, чья ставка окажется последней.
+The user creates a lot and sets the minimum price for the product and the end date of the lot, as well as the bid step. Users interested in buying make bets, trying to beat the bids of previous users. You cannot place a bet that is less than the maximum bet. The winner is the user whose bid will be the last.
 
-## Особенности
+## Features
 
-- возможность назначить шаг ставки
-- возможность сделать и удалить ставку
-- пагинация лотов
-- поиск лотов по названию
-- возможность следить за ставками через профиль
-- отображение победителя в случае завершения лота
-- лот будет автоматически завершён, если значение таймера достигнет нуля
+- ability to assign a bid step
+- the ability to make and delete a bet
+- pagination of lots
+- search for lots by name
+- ability to check the bids in the profile
+- display of the winner in case of lot completion
+- the lot will be automatically completed if the timer value reaches zero
 
-## Технологии
+## Technologies
 
 - Laravel 8
 - MySQL
@@ -24,7 +24,7 @@
 - css
 - js
 
-## Хостинг
+## Hosting
 
-Сервис размещён на хостинге от Heroku<br>
+The service is hosted by Heroku<br>
 http://yeticave.herokuapp.com/
